@@ -1,0 +1,40 @@
+# ignore cache dirs
+.ipynb_checkpoints
+.idea
+__pycache__/
+
+# ignore working dirs
+data/test
+workdir
+
+# Literature
+literature/pdfs/*
+literature/bibliography.bib.sav
+
+# ignore paper dir (overleaf-git)
+paper
+
+# Ignore everything in the results folder
+results/**
+
+# Except the database files form SIM-TRC
+!results/database/SIM-TRC/all_runs.csv
+
+# Except the reults files form ML-Model Training in any subdirectory
+!results/**/
+!results/**/regression_summary.csv
+!results/**/experiment_def.txt
+!results/**/test_index.txt
+!results/**/train_index.txt
+!results/**/preds_mean.csv
+
+# Except the reults files form Optimization in any subdirectory
+!results/**/
+!results/**/results.txt
+!results/**/metadata_results.pkl
+
+
+# Tokens
+tokens/
+
+

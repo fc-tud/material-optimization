@@ -1,0 +1,63 @@
+FEAP * * cantilever cross-section optimization
+*,*,*,3,4,8 
+
+PARAmeters
+	tt = 100    ! total time
+	ns = 100  	! time increment per step, easier if integer-valued
+	dt = tt/ns  ! number of time steps
+	
+! Concrete material
+MATE,1
+	USER 1					! material model according to https://doi.org/10.1016/j.ijsolstr.2023.112151
+	69	21					! materialswitch, history per gaussian point
+	1 						! mpswitch 1 means 21 micro planes for integration
+	17220.d0		0.18 	! kappamac, poisson ratio kappa in MPa (redundant)
+	12917.d0	0.0d0 0.d0	! mumac, cmic, dmic all in MPa
+	0.d0 	0.d0 	1.d0	! Avector
+	0.d0	1.d0	0.d0	! Bvector
+	0.d0	0.d0	0.d0	! rotation angles around x1, x2, x3
+	0.00028d0	8.182d0		! gamma0(strain for damage to occur),  kratio (ratio between compressio and tensile strength)
+	0.98d0	1000.d0			! alphad, betad (parameters for damage curve)
+	1.0d0 	2.4d-06			! variable c (square of length scale), rho0 
+
+! Steel material
+MATErial,2
+	SOLId
+	ELAStic ISOTropic 210000 0.25		! isotropic linear-elastic material, E=2500GPA, nu=0.25
+
+
+INCLude mesh.txt
+
+END mesh
+TIE	! tie nodes at same coordinate position (for multiple element blocks that have a common edge)
+TIE	! executed multiple times to make sure all edges are considered
+TIE
+TIE
+
+BATCH
+  DT,,dt  
+  PROP,,1 ! proportional load group 1
+END
+2 1
+0 0      ! start at unloaded state
+tt 1	! linear increase of displacements until total time
+
+INCLude plot.txt
+
+BATCh ! solution block
+	OPTI
+	PLOT MESH	! plotting of mesh
+	PLOT BOUNdary	! plotting of boundary conditions
+	DT,,dt		! set time increment DT with value of dt
+	LOOP,time,ns	! define loop over time steps, variable "time", run until value of ns is reached
+		TIME
+		LOOP,NEWTon,50	! solve FE problem, maximum 50 iterations until convergence has to be achieved
+			UTANg,,1	! apply UTANgent command (used for unsymmetric tangents but also efficient for symmetric tangents)
+		NEXT,NEWTon		! end of solution loop
+		PLOT,STREss,2	! plot stresses
+		PLOT,DISPlacement	! plot displacements
+		JPPV,time		! output paraview file
+	NEXT,time			! end of simulation loop
+	END		! end simulation
+STOP	! stop program
+  

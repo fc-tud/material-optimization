@@ -1,0 +1,23 @@
+name: autosklearn
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - auto-sklearn
+  - gcc_linux-64
+  - gxx_linux-64
+  - matplotlib
+  - nevergrad
+  - numpy
+  - pandas
+  - pip
+  - plotly
+  - python
+  - scikit-learn
+  - scikit-optimize
+  - scipy
+  - swig
+  - xgboost
+  - pip:
+    - tqdm
+
