@@ -17,6 +17,9 @@ paper
 # Ignore everything in the results folder
 results/**
 
+# Except the .zip results from the paper
+!results/paper_results.zip
+
 # Except the database files form SIM-TRC
 !results/database/SIM-TRC/all_runs.csv
 
