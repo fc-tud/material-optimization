@@ -1,0 +1,21 @@
+name: ml_opt_base
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - matplotlib
+  - numpy=1.26
+  - pandas
+  - pip
+  - plotly
+  - python
+  - scikit-learn
+  - scikit-optimize
+  - scipy
+  - xgboost
+  - nevergrad
+  - jupyter
+  - optuna
+  - catboost
+  - pip:
+    - tqdm

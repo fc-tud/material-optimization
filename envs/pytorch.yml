@@ -1,0 +1,23 @@
+name: pytorch
+channels:
+  - defaults
+  - pytorch
+  - nvidia
+dependencies:
+  - pytorch-cuda=11.7
+  - pytorch
+  - torchvision
+  - torchaudio
+  - plotly
+  - matplotlib
+  - scikit-learn
+  - tqdm
+  - numpy=1.26
+  - pandas
+  - optuna
+  - scikit-optimize
+  - scipy
+  - nevergrad
+  - pip
+  - pip:
+    - tqdm

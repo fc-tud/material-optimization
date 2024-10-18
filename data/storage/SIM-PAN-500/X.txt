@@ -1,0 +1,1 @@
+PS:PAN ratio,Feed rate(mL/h),Distance(cm),Mass fraction of solute,Mass fraction of SiO2 in solute ,Applied voltage(kV),Inner diameter(mm)
