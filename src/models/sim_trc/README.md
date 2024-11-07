@@ -1,5 +1,4 @@
-# SIM-TRC Code Availability
-The code for the use-case SIM-TRC is not available publicly. 
+# SIM-TRC
 
 For further information, please contact: 
   
